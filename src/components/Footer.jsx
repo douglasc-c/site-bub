@@ -5,12 +5,14 @@ export function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer>
-      <div className="flex flex-col items-center pt-28">
-        <img src={LogoWhite} alt="Logo" className="w-32" />
-        <p className="text-white font-light py-5">BETTER USE BLOCKCHAIN</p>
-        <p className="text-white font-bold text-2xl">{t('socialMedia')}</p>
-        <ul className="list-none flex justify-center space-x-4 pb-20 pt-5">
+    <footer className="bg-black">
+      <div className="flex flex-col items-center pt-10 md:pt-28">
+        <img src={LogoWhite} alt="Logo" className="w-20 md:w-32" />
+        <p className="text-white font-light py-5">{t('betterUseBlockchain')}</p>
+        <p className="text-white font-bold text-xl md:text-2xl">
+          {t('socialMedia')}
+        </p>
+        <ul className="list-none flex justify-center space-x-4 pb-10 pt-2">
           <li>
             <a
               href="https://www.instagram.com/betteruseblockchain/"
@@ -53,12 +55,12 @@ export function Footer() {
           </li>
         </ul>
       </div>
-      <div className="py-5 px-10 flex justify-between items-center border-t border-gray-900 font-light">
-        <div className="flex items-center text-white space-x-4 pr-2.5">
+      <div className="py-5 px-4 md:px-10 flex flex-col md:flex-row justify-between items-center border-t border-gray-900 font-light">
+        <div className="flex flex-col md:flex-row items-center text-white space-y-2 md:space-x-4 md:space-y-0">
           <p>Copyright@BUB 2023. {t('allRights')}</p>
           <p>CNPJ: 50.064.453/0001-50</p>
         </div>
-        <div className="flex items-center text-white space-x-4 pl-2.5">
+        <div className="flex items-center text-white space-x-4 md:pl-2.5 py-2">
           <a
             href="https://betteruseblockchain.com/assets/pdfs/politica_de_privacidade.pdf"
             target="_blank"

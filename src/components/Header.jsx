@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
 import i18n from '../../i18n'
 
+// Importe outras bibliotecas e módulos necessários
+
 export function Header() {
   const { t } = useTranslation()
 
@@ -31,20 +33,22 @@ export function Header() {
 
   return (
     <header
-      className={
+      className={`
+      p-4 flex justify-between items-center font-light text-white z-10 fixed w-full px-4 lg:px-24  
+      ${
         isScrolled
-          ? 'p-4 flex justify-between items-center text-white z-10 bg-black fixed w-full px-24'
-          : 'p-4 flex justify-between items-center text-white z-10  fixed w-full px-24'
-      }
+          ? 'bg-black max-sm:bg-black max-sm:text-white '
+          : 'max-sm:bg-white max-md:text-black'
+      }`}
     >
-      <div className="flex items-center">
-        {isScrolled ? (
-          <img src={LogoWhite} alt="Logo" className="w-28" />
-        ) : (
-          <img src={LogoBlack} alt="Logo" className="w-28" />
-        )}
+      <div className="flex items-center px-4">
+        <img
+          src={isScrolled ? LogoWhite : LogoBlack}
+          alt="Logo"
+          className="w-20 lg:w-28"
+        />
       </div>
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center ">
         <a
           className="decoration-white px-4 py-2"
           href="https://dash.betteruseblockchain.com/register"
@@ -61,21 +65,14 @@ export function Header() {
         >
           {t('singIn')}
         </a>
-        {isLanguage === 'en' ? (
+        <div className="px-4 py-2">
           <img
-            src={brPt}
+            src={isLanguage === 'en' ? brPt : eua}
             alt="Language"
-            className="w-7 cursor-pointer"
-            onClick={() => changeLanguage('pt-BR')}
+            className="w-7"
+            onClick={() => changeLanguage(isLanguage === 'en' ? 'pt-BR' : 'en')}
           />
-        ) : (
-          <img
-            src={eua}
-            alt="Language"
-            className="w-7 cursor-pointer"
-            onClick={() => changeLanguage('en')}
-          />
-        )}
+        </div>
       </div>
     </header>
   )
