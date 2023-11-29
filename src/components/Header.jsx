@@ -7,8 +7,6 @@ import { useEffect, useState } from 'react'
 import i18n from '../../i18n'
 import { useSpring, animated } from 'react-spring'
 
-// Importe outras bibliotecas e módulos necessários
-
 export function Header() {
   const { t } = useTranslation()
   const [isScrolled, setIsScrolled] = useState(false)
