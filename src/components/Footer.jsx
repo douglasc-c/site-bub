@@ -69,7 +69,7 @@ export function Footer() {
             {t('privacyPolices')}
           </a>
           <a
-            href="/assets/pdfs/termos_de_uso.pdf"
+            href="/src/assets/pdfs/termos_de_uso.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
