@@ -5,44 +5,50 @@ import eua from '../assets/img/eua-96.png'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
 import i18n from '../../i18n'
+import { useSpring, animated } from 'react-spring'
 
 // Importe outras bibliotecas e módulos necessários
 
 export function Header() {
   const { t } = useTranslation()
-
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isLanguage, setIsLanguade] = useState('en')
+  const [isLanguage, setIsLanguage] = useState('en')
 
   const changeLanguage = (language) => {
     i18n.changeLanguage(language)
-    setIsLanguade(language)
+    setIsLanguage(language)
+  }
+
+  const logoSpring = useSpring({
+    transform: isScrolled ? 'scale(0.8)' : 'scale(1)',
+    config: { tension: 300, friction: 20 },
+  })
+
+  const headerSpring = useSpring({
+    backgroundColor: isScrolled ? 'black' : 'white',
+    color: isScrolled ? 'white' : 'black',
+    config: { tension: 300, friction: 20 },
+  })
+
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 0)
   }
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0)
-    }
-
     window.addEventListener('scroll', handleScroll)
-
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
 
   return (
-    <header
-      className={`
-      p-4 flex justify-between items-center font-light text-white z-10 fixed w-full px-4 lg:px-24  
-      ${
-        isScrolled
-          ? 'bg-black max-sm:bg-black max-sm:text-white '
-          : 'max-sm:bg-white max-md:text-black'
-      }`}
+    <animated.header
+      style={headerSpring}
+      className={`p-4 flex justify-between items-center font-light text-white z-10 fixed w-full px-4 lg:px-24`}
     >
       <div className="flex items-center px-4">
-        <img
+        <animated.img
+          style={logoSpring}
           src={isScrolled ? LogoWhite : LogoBlack}
           alt="Logo"
           className="w-20 lg:w-28"
@@ -74,6 +80,6 @@ export function Header() {
           />
         </div>
       </div>
-    </header>
+    </animated.header>
   )
 }
