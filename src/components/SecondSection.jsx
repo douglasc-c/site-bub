@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import GirlABlock from '../assets/img/10.png'
 
-export function SecondeSection() {
+export function SecondSection() {
   const { t } = useTranslation()
 
   return (
